@@ -14,7 +14,7 @@ function verificar_inactividad($tiempoInactividad = 15 * 60)
             if ($tiempoTranscurrido > $tiempoInactividad) {
                 echo "
            <script>alert('Sesión cerrada por inactividad');
-           window.location.href='../php/cerrar_sesion.php';
+           window.location.href='cerrarSesion.php';
            </script>";
                 exit();
             }
