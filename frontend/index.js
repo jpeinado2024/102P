@@ -33,7 +33,7 @@ setInterval(nextSlide, 3000); // Cambia cada 3 segundos
 // enviar formulario
 document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById("registroForm"); // 👈 FALTABA ESTO
+    const form = document.getElementById("registroForm");
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -51,37 +51,31 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             body: datos
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
 
-                    // 1️⃣ Ocultar formulario
-                    document.getElementById("registroForm").style.display = "none";
+                document.getElementById("registroForm").style.display = "none";
+                document.getElementById("view-exito").style.display = "block";
+                document.getElementById("user-code-display").textContent = data.id;
 
-                    // 2️⃣ Mostrar vista de éxito
-                    document.getElementById("view-exito").style.display = "block";
+                const linkInvitacion = `${data.id}`;
+                const mensaje = `¡Hola! Te invito a registrarte con mi código:\n${linkInvitacion}`;
+                const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
 
-                    // 3️⃣ Mostrar el ID como código
-                    document.getElementById("user-code-display").textContent = data.id;
+                document.getElementById("whatsapp-link").href = whatsappURL;
 
-                    // 4️⃣ Crear link de invitación
-                    const dominio = window.location.origin;
-                    const linkInvitacion = `${dominio}/index.html?invit=${data.id}`;
-
-                    const mensaje = `¡Hola! Te invito a registrarte con mi código:\n${linkInvitacion}`;
-                    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
-
-                    document.getElementById("whatsapp-link").href = whatsappURL;
-
-                } else {
-                    console.log("Error: " + data.error);
-                }
-            })
-
-    })
+            } else {
+                console.log("Error:", data.error);
+                document.getElementById("mensaje").textContent= data.error;
+                // alert(data.error); // 👈 opcional pero recomendado
+            }
+        })
         .catch(error => {
-            console.error("Error:", error);
+            console.error("Error en fetch:", error);
         });
+    });
+
 });
 
 
@@ -114,4 +108,25 @@ passInput.addEventListener('input', () => {
     tipoInput.value = valorBase64;
 });
 
+
+function soloNumeros(event) {
+    const key = event.key;
+    const input = event.target;
+
+    // Teclas de control
+    if (
+        key === "Backspace" ||
+        key === "Delete" ||
+        key === "ArrowLeft" ||
+        key === "ArrowRight" ||
+        key === "Tab"
+    ) {
+        return;
+    }
+
+    // Números (incluye teclado numérico)
+    if (!/^[0-9]$/.test(key)) {
+        event.preventDefault();
+    }
+}
 

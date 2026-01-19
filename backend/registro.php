@@ -119,7 +119,7 @@ $dominio = $_SERVER['HTTP_HOST'].'/index.html?invit=';
 
 
 
-$id =base64_encode($registro->guardar($nombre, $cc, $tel, $dir, $fecha, $invitacion));
+$id =$dominio.base64_encode($registro->guardar($nombre, $cc, $tel, $dir, $fecha, $invitacion));
 
 if ($id) {
     echo json_encode([

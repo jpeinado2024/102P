@@ -1,52 +1,328 @@
+:root {
+  --rojo: #e30613;
+  --negro: #1a1a1a;
+  --verde: #25d366;
+  --gris: #f8f9fa;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  background: var(--gris);
+  color: var(--negro);
+}
 
-        :root { --rojo: #E30613; --negro: #1A1A1A; --verde: #25D366; --gris: #f8f9fa; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--gris); color: var(--negro); }
-        
-        /* Logo Superior Izquierda */
-        .top-bar { position: absolute; top: 10px; left: 20px; z-index: 100; }
-        .logo-img { height: 60px; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3)); }
+/* Logo Superior Izquierda */
+.top-bar {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 100;
+}
+.logo-img {
+  height: 60px;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.3));
+}
 
-        /* Header con Identidad */
-        .header { background: var(--rojo); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--negro); }
-        .logo-102 { font-size: 4.5rem; font-weight: 900; line-height: 1; margin: 0; }
-        .siglas-pl { font-size: 1.8rem; letter-spacing: 8px; font-weight: 400; display: block; margin-top: 5px; }
+/* Header con Identidad */
+.header {
+  background: var(--rojo);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 5px solid var(--negro);
+}
+.logo-102 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+}
+.siglas-pl {
+  font-size: 1.8rem;
+  letter-spacing: 8px;
+  font-weight: 400;
+  display: block;
+  margin-top: 5px;
+}
 
-        /* Carrusel Simple */
-        .carousel-container { width: 100%; max-width: 800px; margin: 20px auto; position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 350px; }
-        .carousel-slide { display: none; width: 100%; height: 100%; }
-        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
-        .active-slide { display: block; }
+/* Carrusel Simple */
+.carousel-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 350px;
+}
+.carousel-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.active-slide {
+  display: block;
+}
 
-        /* Div de Información */
-        .info-box { max-width: 800px; margin: 20px auto; padding: 25px; background: white; border-left: 6px solid var(--rojo); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #444; }
+/* Div de Información */
+.info-box {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 25px;
+  background: white;
+  border-left: 6px solid var(--rojo);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+}
 
-        /* Contenedores */
-        .container { max-width: 500px; margin: 20px auto 50px; background: white; padding: 35px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); box-sizing: border-box; }
-        .view { display: none; animation: slideUp 0.4s ease-out; }
-        .view.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* Contenedores */
+.container {
+  max-width: 500px;
+  margin: 20px auto 50px;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.view {
+  display: none;
+  animation: slideUp 0.4s ease-out;
+}
+.view.active {
+  display: block;
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-        /* Estilos de Formulario (Sin cambios) */
-        h2 { text-align: center; color: var(--rojo); font-weight: 900; text-transform: uppercase; margin-bottom: 25px; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: 700; font-size: 0.8rem; color: #555; margin-bottom: 8px; text-transform: uppercase; }
-        input { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 12px; font-size: 1rem; font-family: inherit; transition: 0.3s; box-sizing: border-box; }
-        input:focus { border-color: var(--rojo); outline: none; background: #fffcfc; }
+/* Estilos de Formulario (Sin cambios) */
+h2 {
+  text-align: center;
+  color: var(--rojo);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #555;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+input {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+input:focus {
+  border-color: var(--rojo);
+  outline: none;
+  background: #fffcfc;
+}
 
-        /* Botones */
-        .btn { background: var(--rojo); color: white; border: none; width: 100%; padding: 18px; font-weight: 900; border-radius: 12px; cursor: pointer; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 10px 20px rgba(227,6,19,0.2); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(227,6,19,0.3); }
-        .btn-ws { background: var(--verde); text-decoration: none; display: flex; align-items: center; justify-content: center; color: white; padding: 18px; border-radius: 12px; font-weight: 900; margin-top: 20px; box-shadow: 0 10px 20px rgba(37,211,102,0.2); }
-        .ingresar{background-color: var(--rojo); color: #fff;  border: none; border-radius: 5px; height: 40px;}
+/* Botones */
+.btn {
+  background: var(--rojo);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 18px;
+  font-weight: 900;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(227, 6, 19, 0.2);
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(227, 6, 19, 0.3);
+}
+.btn-ws {
+  background: var(--verde);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-top: 20px;
+  box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+.ingresar {
+  background-color: var(--rojo);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+}
 
-        /* Spans */
-        span { font-size: 0.85rem; background-color: var(--rojo) !important; color: #fff !important; padding: 6px; }
-        /* Admin Dashboard */
-        .admin-wide { max-width: 1200px; width: 95%; }
-        .table-res { overflow-x: auto; background: white; border-radius: 15px; margin-top: 20px; border: 1px solid #eee; }
-        table { width: 100%; border-collapse: collapse; min-width: 900px; }
-        th { background: #f1f1f1; padding: 15px; text-align: left; font-size: 0.7rem; text-transform: uppercase; border-bottom: 3px solid var(--rojo); }
-        td { padding: 15px; border-bottom: 1px solid #f9f9f9; font-size: 0.85rem; }
-        .code-badge { background: #eee; padding: 4px 8px; border-radius: 5px; font-family: monospace; font-weight: bold; }
-        .ref-badge { background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 5px; font-weight: bold; }
-    
+.ingresar2 {
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.ingresar2:hover {
+  background-color: var(--rojo);
+  color: #fff;
+}
+/* Spans */
+span {
+  font-size: 0.85rem;
+  background-color: var(--rojo) !important;
+  color: #fff !important;
+  padding: 6px;
+}
+/* Admin Dashboard */
+.admin-wide {
+  max-width: 1200px;
+  width: 95%;
+}
+.table-res {
+  overflow-x: auto;
+  background: white;
+  border-radius: 15px;
+  margin-top: 20px;
+  border: 1px solid #eee;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+th {
+  background: #f1f1f1;
+  padding: 15px;
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--rojo);
+}
+td {
+  padding: 15px;
+  border-bottom: 1px solid #f9f9f9;
+  font-size: 0.85rem;
+}
+.code-badge {
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-weight: bold;
+}
+.ref-badge {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Botones de Redes */
+.redes-sociales {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  line-height: 55px;
+  bottom: 20%;
+  right: 1%;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  z-index: 100;
+  background-image: url(../img/facebook_icon.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+.redes-socialest {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  line-height: 55px;
+  bottom: 35%;
+  right: 1%;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  z-index: 100;
+  background-image: url(../img/tittok_icon.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+.redes-socialesi {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  line-height: 55px;
+  bottom: 5%;
+  right: 1%;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  z-index: 100;
+  background-image: url(../img/Instagram_icon.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+.redes-sociales:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      
+}
+.redes-socialesi:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      
+}
+.redes-socialest:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      
+}
+
+#mensaje {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: var(--rojo);
+  text-align: center;
+}
