@@ -1,6 +1,6 @@
 <?php
 // Función para manejar la destrucción de la sesión por inactividad
-function verificar_inactividad($tiempoInactividad = 15 * 60)
+function verificar_inactividad($tiempoInactividad = 1 * 60)
 {   // Iniciar la sesión si no se ha iniciado
     if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['Email'])) {
         // Verificar si existe la variable de última actividad
