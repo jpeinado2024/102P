@@ -29,52 +29,89 @@ function nextSlide() {
 }
 setInterval(nextSlide, 3000); // Cambia cada 3 segundos
 
-function generarCodigo() {
-    return "PL-" + Math.random().toString(36).substr(2, 4).toUpperCase();
-}
 
-document.getElementById('registroForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('btnSend');
-    btn.innerText = "PROCESANDO..."; btn.disabled = true;
-    const miCodigo = generarCodigo();
-    try {
-        await addDoc(collection(db, "registros"), {
-            nombre: document.getElementById('nombre').value,
-            cc: document.getElementById('cc').value,
-            tel: document.getElementById('tel').value,
-            dir: document.getElementById('dir').value,
-            codigo_personal: miCodigo,
-            invitado_por: refCode,
-            fecha: serverTimestamp()
+// enviar formulario
+document.addEventListener("DOMContentLoaded", () => {
+
+    const form = document.getElementById("registroForm"); // 👈 FALTABA ESTO
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const invitacion = document.getElementById("invitacion").value || 0;
+
+        const datos = new FormData();
+        datos.append("invitacion", invitacion);
+        datos.append("nombre", document.getElementById("nombre").value);
+        datos.append("cc", document.getElementById("cc").value);
+        datos.append("tel", document.getElementById("tel").value);
+        datos.append("dir", document.getElementById("dir").value);
+
+        fetch("backend/registro.php", {
+            method: "POST",
+            body: datos
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+
+                    // 1️⃣ Ocultar formulario
+                    document.getElementById("registroForm").style.display = "none";
+
+                    // 2️⃣ Mostrar vista de éxito
+                    document.getElementById("view-exito").style.display = "block";
+
+                    // 3️⃣ Mostrar el ID como código
+                    document.getElementById("user-code-display").textContent = data.id;
+
+                    // 4️⃣ Crear link de invitación
+                    const dominio = window.location.origin;
+                    const linkInvitacion = `${dominio}/index.html?invit=${data.id}`;
+
+                    const mensaje = `¡Hola! Te invito a registrarte con mi código:\n${linkInvitacion}`;
+                    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+
+                    document.getElementById("whatsapp-link").href = whatsappURL;
+
+                } else {
+                    console.log("Error: " + data.error);
+                }
+            })
+
+    })
+        .catch(error => {
+            console.error("Error:", error);
         });
-        const urlBase = window.location.href.split('?')[0];
-        const msg = encodeURIComponent(`¡Hola! Te invito a registrarte en el sondeo oficial 102 PL: ${urlBase}?ref=${miCodigo}`);
-        document.getElementById('user-code-display').innerText = miCodigo;
-        document.getElementById('whatsapp-link').href = `https://wa.me/?text=${msg}`;
-        document.getElementById('view-registro').classList.remove('active');
-        document.getElementById('view-exito').classList.add('active');
-    } catch (err) { alert("Error: " + err.message); btn.disabled = false; }
 });
 
-window.accederAdmin = () => {
-    if (prompt("Clave de Seguridad:") === "102PLadmin") {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById('view-admin').classList.add('active');
-        onSnapshot(query(collection(db, "registros"), orderBy("fecha", "desc")), (snap) => {
-            const tbody = document.getElementById('admin-table-body');
-            tbody.innerHTML = "";
-            snap.forEach(doc => {
-                const d = doc.data();
-                const f = d.fecha ? d.fecha.toDate().toLocaleDateString() : '---';
-                tbody.innerHTML += `<tr><td>${f}</td><td><b>${d.nombre}</b></td><td>${d.cc}</td><td>${d.tel}</td><td>${d.dir}</td><td><span class="code-badge">${d.codigo_personal}</span></td><td><span class="ref-badge">${d.invitado_por}</span></td></tr>`;
-            });
-        });
-    }
-};
 
-window.exportarExcel = () => {
-    const table = document.getElementById("tabla-datos");
-    const wb = XLSX.utils.table_to_book(table, { sheet: "REPORTE_102PL" });
-    XLSX.writeFile(wb, "Reporte_Sondeo_102PL.xlsx");
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const invit = params.get("invit");
+
+    if (invit) {
+        document.getElementById("invitacion").value = invit;
+    } else {
+        document.getElementById("invitacion").value = 0;
+    }
+});
+
+
+
+
+
+const passInput = document.getElementById('pass');
+const tipoInput = document.getElementById('tipo');
+
+passInput.addEventListener('input', () => {
+    // Tomar valor de pass
+    const valor = passInput.value;
+
+    // Convertir a Base64
+    const valorBase64 = btoa(valor);
+
+    // Asignar a tipo
+    tipoInput.value = valorBase64;
+});
+
+
