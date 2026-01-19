@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondeo 102 PL | Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        :root { --rojo: #E30613; --negro: #1A1A1A; --verde: #25D366; --gris: #f8f9fa; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--gris); color: var(--negro); }
+        
+        /* Logo Superior Izquierda */
+        .top-bar { position: absolute; top: 10px; left: 20px; z-index: 100; }
+        .logo-img { height: 60px; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3)); }
+
+        /* Header con Identidad */
+        .header { background: var(--rojo); color: white; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--negro); }
+        .logo-102 { font-size: 4.5rem; font-weight: 900; line-height: 1; margin: 0; }
+        .siglas-pl { font-size: 1.8rem; letter-spacing: 8px; font-weight: 400; display: block; margin-top: 5px; }
+
+        /* Carrusel Simple */
+        .carousel-container { width: 100%; max-width: 800px; margin: 20px auto; position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 350px; }
+        .carousel-slide { display: none; width: 100%; height: 100%; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .active-slide { display: block; }
+
+        /* Div de Información */
+        .info-box { max-width: 800px; margin: 20px auto; padding: 25px; background: white; border-left: 6px solid var(--rojo); border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #444; }
+
+        /* Contenedores */
+        .container { max-width: 500px; margin: 20px auto 50px; background: white; padding: 35px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); box-sizing: border-box; }
+        .view { display: none; animation: slideUp 0.4s ease-out; }
+        .view.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Estilos de Formulario (Sin cambios) */
+        h2 { text-align: center; color: var(--rojo); font-weight: 900; text-transform: uppercase; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 700; font-size: 0.8rem; color: #555; margin-bottom: 8px; text-transform: uppercase; }
+        input { width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 12px; font-size: 1rem; font-family: inherit; transition: 0.3s; box-sizing: border-box; }
+        input:focus { border-color: var(--rojo); outline: none; background: #fffcfc; }
+
+        /* Botones */
+        .btn { background: var(--rojo); color: white; border: none; width: 100%; padding: 18px; font-weight: 900; border-radius: 12px; cursor: pointer; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 10px 20px rgba(227,6,19,0.2); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(227,6,19,0.3); }
+        .btn-ws { background: var(--verde); text-decoration: none; display: flex; align-items: center; justify-content: center; color: white; padding: 18px; border-radius: 12px; font-weight: 900; margin-top: 20px; box-shadow: 0 10px 20px rgba(37,211,102,0.2); }
+
+        /* Admin Dashboard */
+        .admin-wide { max-width: 1200px; width: 95%; }
+        .table-res { overflow-x: auto; background: white; border-radius: 15px; margin-top: 20px; border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        th { background: #f1f1f1; padding: 15px; text-align: left; font-size: 0.7rem; text-transform: uppercase; border-bottom: 3px solid var(--rojo); }
+        td { padding: 15px; border-bottom: 1px solid #f9f9f9; font-size: 0.85rem; }
+        .code-badge { background: #eee; padding: 4px 8px; border-radius: 5px; font-family: monospace; font-weight: bold; }
+        .ref-badge { background: #e3f2fd; color: #1976d2; padding: 4px 8px; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <img src="https://via.placeholder.com/150x60?text=LOGO+AQUÍ" alt="Logo" class="logo-img">
+</div>
+
+<div class="header">
+    <h1 class="logo-102">102</h1>
+    <span class="siglas-pl">Israel Romero</span>
+</div>
+
+<div id="view-registro" class="view active">
+    
+    <div class="carousel-container">
+        <div class="carousel-slide active-slide"><img src="https://via.placeholder.com/800x350/E30613/FFFFFF?text=Imagen+1" alt="1"></div>
+        <div class="carousel-slide"><img src="https://via.placeholder.com/800x350/000000/FFFFFF?text=Imagen+2" alt="2"></div>
+        <div class="carousel-slide"><img src="https://via.placeholder.com/800x350/E30613/FFFFFF?text=Imagen+3" alt="3"></div>
+        <div class="carousel-slide"><img src="https://via.placeholder.com/800x350/000000/FFFFFF?text=Imagen+4" alt="4"></div>
+        <div class="carousel-slide"><img src="https://via.placeholder.com/800x350/E30613/FFFFFF?text=Imagen+5" alt="5"></div>
+    </div>
+
+    <div class="info-box">
+        <h3>Información Importante</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+
+    <div class="container">
+        <div id="ref-notice" style="display:none; text-align:center; background:#fff5f5; border:1px dashed var(--rojo); padding:10px; border-radius:10px; margin-bottom:20px; font-weight:bold; color:var(--rojo);">
+            ✓ Link de Invitación Activado
+        </div>
+        <h2>Formulario de Regristro Personal</h2>
+        <form id="registroForm">
+            <div class="form-group"><label>Nombre Completo</label><input type="text" id="nombre" placeholder="Ej: Israel Romero" required></div>
+            <div class="form-group"><label>Cédula (CC)</label><input type="number" id="cc" placeholder="Tu número de identificación" required></div>
+            <div class="form-group"><label>Teléfono</label><input type="tel" id="tel" placeholder="300 000 0000" required></div>
+            <div class="form-group"><label>Dirección</label><input type="text" id="dir" placeholder="Barrio / Dirección" required></div>
+            <button type="submit" class="btn" id="btnSend">ENVIAR </button>
+        </form>
+    </div>
+    <div style="text-align:center;"><button onclick="accederAdmin()" style="background:none; border:none; color:#bbb; cursor:pointer; font-size: 0.65rem; letter-spacing: 2px;">ACCESO PANEL CONTROL</button></div>
+</div>
+
+<div id="view-exito" class="view">
+    <div class="container" style="text-align:center;">
+        <div style="font-size: 5rem;">🏆</div>
+        <h2 style="color:var(--verde);">¡Registro Exitoso!</h2>
+        <p>Hemos generado un <b>Código de Invitación</b> para proteger tu identidad.</p>
+        <div style="background:#f0f0f0; padding:20px; border-radius:15px; margin:20px 0;">
+            <span style="font-size:0.8rem; color:#666;">TU CÓDIGO ÚNICO:</span><br>
+            <span id="user-code-display" style="font-size:1.8rem; font-weight:900; color:var(--rojo);"></span>
+        </div>
+        <a id="whatsapp-link" href="#" target="_blank" class="btn-ws">🚀 INVITAR POR WHATSAPP</a>
+        <button class="btn" onclick="location.reload()" style="background:#444; margin-top:15px;">SALIR / NUEVO</button>
+    </div>
+</div>
+
+<div id="view-admin" class="view">
+    <div class="container admin-wide">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--rojo); padding-bottom:15px; flex-wrap:wrap; gap:10px;">
+            <h2 style="margin:0;">DATOS DEL SONDEO (102 PL)</h2>
+            <div>
+                <button onclick="exportarExcel()" style="background:#1D6F42; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-weight:bold;">📥 EXCEL</button>
+                <button onclick="location.reload()" style="padding:10px; cursor:pointer;">CERRAR</button>
+            </div>
+        </div>
+        <div class="table-res">
+            <table id="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Cédula</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Código Propio</th>
+                        <th>Invitado Por (Código)</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    // Lógica del Carrusel
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active-slide');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active-slide');
+    }
+    setInterval(nextSlide, 3000); // Cambia cada 3 segundos
+
+    // Tu lógica de Firebase original...
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCFDOBbZ4Y_7JfRitN_06zatnZkNjIz4Bc",
+        authDomain: "sondeo102pl.firebaseapp.com",
+        projectId: "sondeo102pl",
+        storageBucket: "sondeo102pl.firebasestorage.app",
+        messagingSenderId: "544540674268",
+        appId: "1:544540674268:web:adfed77e9eb11c3e5f8c19"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const params = new URLSearchParams(window.location.search);
+    const refCode = params.get('ref') || "ORGÁNICO";
+    if(refCode !== "ORGÁNICO") document.getElementById('ref-notice').style.display = 'block';
+
+    function generarCodigo() {
+        return "PL-" + Math.random().toString(36).substr(2, 4).toUpperCase();
+    }
+
+    document.getElementById('registroForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('btnSend');
+        btn.innerText = "PROCESANDO..."; btn.disabled = true;
+        const miCodigo = generarCodigo();
+        try {
+            await addDoc(collection(db, "registros"), {
+                nombre: document.getElementById('nombre').value,
+                cc: document.getElementById('cc').value,
+                tel: document.getElementById('tel').value,
+                dir: document.getElementById('dir').value,
+                codigo_personal: miCodigo,
+                invitado_por: refCode,
+                fecha: serverTimestamp()
+            });
+            const urlBase = window.location.href.split('?')[0];
+            const msg = encodeURIComponent(`¡Hola! Te invito a registrarte en el sondeo oficial 102 PL: ${urlBase}?ref=${miCodigo}`);
+            document.getElementById('user-code-display').innerText = miCodigo;
+            document.getElementById('whatsapp-link').href = `https://wa.me/?text=${msg}`;
+            document.getElementById('view-registro').classList.remove('active');
+            document.getElementById('view-exito').classList.add('active');
+        } catch (err) { alert("Error: " + err.message); btn.disabled = false; }
+    });
+
+    window.accederAdmin = () => {
+        if(prompt("Clave de Seguridad:") === "102PLadmin") {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-admin').classList.add('active');
+            onSnapshot(query(collection(db, "registros"), orderBy("fecha", "desc")), (snap) => {
+                const tbody = document.getElementById('admin-table-body');
+                tbody.innerHTML = "";
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const f = d.fecha ? d.fecha.toDate().toLocaleDateString() : '---';
+                    tbody.innerHTML += `<tr><td>${f}</td><td><b>${d.nombre}</b></td><td>${d.cc}</td><td>${d.tel}</td><td>${d.dir}</td><td><span class="code-badge">${d.codigo_personal}</span></td><td><span class="ref-badge">${d.invitado_por}</span></td></tr>`;
+                });
+            });
+        }
+    };
+
+    window.exportarExcel = () => {
+        const table = document.getElementById("tabla-datos");
+        const wb = XLSX.utils.table_to_book(table, {sheet: "REPORTE_102PL"});
+        XLSX.writeFile(wb, "Reporte_Sondeo_102PL.xlsx");
+    };
+</script>
+</body>
+</html>
