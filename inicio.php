@@ -4,8 +4,7 @@ if (! isset($_SESSION['admi'])) {
     header("location: index.html");
     exit();
 }
-include_once 'backend/Destruir.php';
-verificar_inactividad();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
