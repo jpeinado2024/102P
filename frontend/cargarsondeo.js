@@ -1,79 +1,79 @@
-const Personal = async () => {
+// const Personal = async () => {
 
-    const tbody = document.getElementById("admin-table-body");
+//     const tbody = document.getElementById("admin-table-body");
 
-    try {
-        const response = await fetch("backend/json.php?action=listar_registros");
+//     try {
+//         const response = await fetch("backend/json.php?action=listar_registros");
 
-        // Leemos como texto para detectar HTML
-        const text = await response.text();
+//         // Leemos como texto para detectar HTML
+//         const text = await response.text();
 
-        console.log("RESPUESTA CRUDA DEL SERVIDOR:", text);
+//         console.log("RESPUESTA CRUDA DEL SERVIDOR:", text);
 
-        if (text.startsWith("<")) {
-            throw new Error("El servidor devolvió HTML en lugar de JSON");
-        }
+//         if (text.startsWith("<")) {
+//             throw new Error("El servidor devolvió HTML en lugar de JSON");
+//         }
 
-        const json = JSON.parse(text);
+//         const json = JSON.parse(text);
 
-        // Validación básica
-        if (!json.ok || !Array.isArray(json.data)) {
-            throw new Error("Formato de respuesta inválido");
-        }
+//         // Validación básica
+//         if (!json.ok || !Array.isArray(json.data)) {
+//             throw new Error("Formato de respuesta inválido");
+//         }
 
-        const datos = json.data;
-        console.log("Datos recibidos:", datos);
-        // Limpiar tabla
-        tbody.innerHTML = "";
+//         const datos = json.data;
+//         console.log("Datos recibidos:", datos);
+//         // Limpiar tabla
+//         tbody.innerHTML = "";
 
-        if (datos.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="7" style="text-align:center;">
-                        No hay registros disponibles
-                    </td>
-                </tr>
-            `;
-            return;
-        }
+//         if (datos.length === 0) {
+//             tbody.innerHTML = `
+//                 <tr>
+//                     <td colspan="7" style="text-align:center;">
+//                         No hay registros disponibles
+//                     </td>
+//                 </tr>
+//             `;
+//             return;
+//         }
 
-        datos.forEach(item => {
+//         datos.forEach(item => {
 
-            const fila = document.createElement("tr");
+//             const fila = document.createElement("tr");
 
-            fila.innerHTML = `
-                <td>${item.fecha ?? "-"}</td>
-                <td>${item.nombre ?? "-"}</td>
-                <td>${item.documento ?? "-"}</td>
-                <td>${item.telefono ?? "-"}</td>
-                <td>${item.direccion ?? "-"}</td>
-                <td>
-    <button 
-        type="button"
-        class="ingresar2"
-        onclick="cargarModal('${btoa(item.id)}')"
-        data-toggle="modal"
-        data-target="#exampleModal">
-        ${btoa(item.id)}
-    </button>
-</td>
+//             fila.innerHTML = `
+//                 <td>${item.fecha ?? "-"}</td>
+//                 <td>${item.nombre ?? "-"}</td>
+//                 <td>${item.documento ?? "-"}</td>
+//                 <td>${item.telefono ?? "-"}</td>
+//                 <td>${item.direccion ?? "-"}</td>
+//                 <td>
+//     <button 
+//         type="button"
+//         class="ingresar2"
+//         onclick="cargarModal('${btoa(item.id)}')"
+//         data-toggle="modal"
+//         data-target="#exampleModal">
+//         ${btoa(item.id)}
+//     </button>
+// </td>
 
-            `;
+//             `;
 
-            tbody.appendChild(fila);
-        });
+//             tbody.appendChild(fila);
+//         });
 
-    } catch (error) {
-        console.error("Error al cargar la tabla:", error);
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="7" style="text-align:center;color:red;">
-                    Error al cargar los datos
-                </td>
-            </tr>
-        `;
-    }
-};
+//     } catch (error) {
+//         console.error("Error al cargar la tabla:", error);
+//         tbody.innerHTML = `
+//             <tr>
+//                 <td colspan="7" style="text-align:center;color:red;">
+//                     Error al cargar los datos
+//                 </td>
+//             </tr>
+//         `;
+//     }
+// };
 
 
 async function cargarModal(idBase64) {
@@ -189,20 +189,20 @@ async function exportarExcel() {
         alert("Error al exportar Excel");
     }
 }
-function filtrarPorCedula() {
-    const input = document.getElementById("buscarCedula");
-    const filtro = input.value.toLowerCase();
+// function filtrarPorCedula() {
+//     const input = document.getElementById("buscarCedula");
+//     const filtro = input.value.toLowerCase();
 
-    const filas = document.querySelectorAll("#admin-table-body tr");
+//     const filas = document.querySelectorAll("#admin-table-body tr");
 
-    filas.forEach(fila => {
-        const celdaCedula = fila.children[2]; // columna Cédula
+//     filas.forEach(fila => {
+//         const celdaCedula = fila.children[2]; // columna Cédula
 
-        if (!celdaCedula) return;
+//         if (!celdaCedula) return;
 
-        const texto = celdaCedula.textContent.toLowerCase();
+//         const texto = celdaCedula.textContent.toLowerCase();
 
-        // Mostrar u ocultar fila
-        fila.style.display = texto.includes(filtro) ? "" : "none";
-    });
-}
+//         // Mostrar u ocultar fila
+//         fila.style.display = texto.includes(filtro) ? "" : "none";
+//     });
+// }

@@ -18,9 +18,11 @@ if (! isset($_SESSION['admi'])) {
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+        <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="img/icon.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+   
 </head>
 
 <body>
@@ -109,14 +111,7 @@ if (! isset($_SESSION['admi'])) {
                     <h2 style="margin:0;">DATOS DEL SONDEO (102 PL)</h2>
                     <div class="d-flex align-items-center gap-2 flex-wrap" style="gap: 10px">
 
-                        <!-- BUSCADOR POR CÉDULA -->
-                        <input
-                            type="text"
-                            id="buscarCedula"
-                            class="form-control"
-                            placeholder="Buscar por cédula..."
-                            style="max-width: 220px;"
-                            onkeyup="filtrarPorCedula()">
+                       
 
                         <!-- BOTÓN EXCEL -->
                         <button onclick="exportarExcel()"
@@ -132,40 +127,40 @@ if (! isset($_SESSION['admi'])) {
 
                 </div>
                 <div class="table-res">
-                    <table id="tabla-datos">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Nombre</th>
-                                <th>Cédula</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Código Propio</th>
-                            </tr>
-                        </thead>
-                        <tbody id="admin-table-body"></tbody>
-                    </table>
+                    <table id="Tabla_usarios" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Código Propio</th>
+        </tr>
+    </thead>
+    <tbody id="admin-table-body"></tbody>
+</table>
+
                 </div>
             </div>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="frontend/cargarsondeo.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            Personal();
-        });
-        document.getElementById("buscarCedula").value = "";
-    </script>
+   <!-- jQuery COMPLETO -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Tus scripts -->
+ <script src="frontend/cargarsondeo.js"></script>
+<script src="frontend/cargartabla.js"></script>
+
+    
 </body>
 
 </html>

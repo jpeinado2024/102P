@@ -3,6 +3,7 @@
   --negro: #1a1a1a;
   --verde: #25d366;
   --gris: #f8f9fa;
+  --arbol: #dd5d5d ;
 }
 body {
   font-family: "Montserrat", sans-serif;
@@ -152,7 +153,20 @@ input:focus {
   color: white;
   border: none;
   width: 100%;
-  padding: 18px;
+  padding: 10px;
+  font-weight: 900;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(227, 6, 19, 0.2);
+}
+.btn-primary{
+   background: var(--arbol);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 5px;
   font-weight: 900;
   border-radius: 12px;
   cursor: pointer;
@@ -163,6 +177,11 @@ input:focus {
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(227, 6, 19, 0.3);
+}
+.btn-primary:hover {
+  background-color: #a50404;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(236, 3, 19, 0.719);
 }
 .btn-ws {
   background: var(--verde);
@@ -210,7 +229,7 @@ span {
   width: 95%;
 }
 .table-res {
-  overflow-x: auto;
+  /* overflow-x: auto;  */
   background: white;
   border-radius: 15px;
   margin-top: 20px;
@@ -219,7 +238,7 @@ span {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 900px;
+  /* min-width: 900px; */
 }
 th {
   background: #f1f1f1;
