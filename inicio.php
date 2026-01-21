@@ -115,7 +115,7 @@ if (! isset($_SESSION['admi'])) {
 
                         <!-- BOTÓN EXCEL -->
                         <button onclick="exportarExcel()"
-                            style="background:#1D6F42; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-weight:bold;">
+                            style="background:var(--rojo); color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-weight:bold;">
                             📥 EXCEL
                         </button>
 

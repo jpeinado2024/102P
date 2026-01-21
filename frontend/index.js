@@ -130,3 +130,19 @@ function soloNumeros(event) {
     }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get("error");
+
+    if (error) {
+        const mensaje = document.getElementById("mensaje");
+        // mostrar modal
+        const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        modal.show();
+        if (error === "passtype") {
+            mensaje.textContent = "Verifique que la contraseña sea la correcta.";
+        } 
+
+        mensaje.style.display = "block";
+    }
+});

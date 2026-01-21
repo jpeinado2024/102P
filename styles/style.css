@@ -271,10 +271,10 @@ td {
 /* Botones de Redes */
 .redes-sociales {
   position: fixed;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   line-height: 55px;
-  bottom: 20%;
+  bottom: 35%;
   right: 1%;
   border-radius: 50%;
   text-align: center;
@@ -289,10 +289,10 @@ td {
 }
 .redes-socialest {
   position: fixed;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   line-height: 55px;
-  bottom: 35%;
+  bottom: 25%;
   right: 1%;
   border-radius: 50%;
   text-align: center;
@@ -307,10 +307,10 @@ td {
 }
 .redes-socialesi {
   position: fixed;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   line-height: 55px;
-  bottom: 5%;
+  bottom: 15%;
   right: 1%;
   border-radius: 50%;
   text-align: center;
@@ -337,6 +337,14 @@ td {
         transform: translateY(-5px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
       
+}
+
+.page-item.active .page-link{
+      z-index: 1;
+    color: #fff;
+    background-color: var(--rojo);
+    border-color: #007bff;
+
 }
 
 #mensaje {
